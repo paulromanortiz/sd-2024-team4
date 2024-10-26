@@ -30,13 +30,17 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+[
+'django.contrib.admin',
+'django.contrib.auth',
+'django.contrib.contenttypes',
+'django.contrib.sessions',
+'django.contrib.messages',
+'django.contrib.staticfiles',
+'allauth',
+'allauth.account',
+'allauth.socialaccount',
+'todolist',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +125,29 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTHENTICATION_BACKENDS = (
+'django.contrib.auth.backends.ModelBackend',
+'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/' # Redirect users after login
+LOGOUT_REDIRECT_URL = '/' # Redirect users after logout
+
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+5. Configure URLs
+In myproject/urls.py, include the Django admin and allauth URLs.
+
+python
+Copy code
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+path('admin/', admin.site.urls),
+path('accounts/', include('allauth.urls')), # Allauth authentication
+path('', include('main.urls')), # Main app URLs
+]

@@ -21,3 +21,28 @@ from django.urls import path
 urlpatterns = [
     path("admin/", admin.site.urls),
 ]
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+path('', views.home, name='home'),
+path('dashboard/', views.dashboard, name='dashboard'),
+]
+Create the home and dashboard views in main/views.py.
+
+#python
+#Copy code
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+def home(request):
+return render(request, 'main/home.html')
+
+@login_required
+def dashboard(request):
+notifications = [
+"Welcome to the dashboard!",
+"You have no new messages.",
+]
+return render(request, 'main/dashboard.html', {'notifications': notifications})
