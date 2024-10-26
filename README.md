@@ -1,4 +1,8 @@
 
+
+# sd-2024-team4
+
+
 # Django Starter Project  
 
 This is a basic Django starter project designed for learning purposes. It includes user authentication (using Django Allauth), a simple home page, and a protected dashboard with notifications. This project serves as an introduction to Django’s core concepts, such as views, templates, authentication, and static files.
