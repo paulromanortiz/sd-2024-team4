@@ -138,16 +138,3 @@ LOGOUT_REDIRECT_URL = '/' # Redirect users after logout
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
-5. Configure URLs
-In myproject/urls.py, include the Django admin and allauth URLs.
-
-python
-Copy code
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-path('admin/', admin.site.urls),
-path('accounts/', include('allauth.urls')), # Allauth authentication
-path('', include('main.urls')), # Main app URLs
-]
